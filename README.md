@@ -1,8 +1,9 @@
-### Projeto em desenvolvimento para matéria de Laboratório de Desenvolvimento Web, na FATEC Osasco por: <br>
-- Cristiano Garcia Carvalhaes <br>
-- João Giacomini Sacchi <br>
-- Marcos Vinicius Batista Lourenço <br>
-- Robson Hamilton Carrea Filho <br>
+### Projeto em desenvolvimento para matéria de Laboratório de Desenvolvimento, na FATEC Osasco por: <br>
+- Dimittri Souza <br>
+- Felipe Araujo <br>
+- Marcos <br>
+- Rafael Paiva <br>
+- Matheus Magalhaes <br>
 
 
 ## Tecnologias utilizadas:
@@ -11,8 +12,7 @@
 - JS
 - Bootstrap
 - Mysql
-- PHP
-- Filezila
+- Java (Spring boot)
 
 ## Como fazer alteracoes no projeto:
 Baixar o plugin do visual studio code "Live Server" para conseguir hostear o site localmente

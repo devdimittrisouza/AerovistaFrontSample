@@ -45,29 +45,33 @@
     <div class="container-fluid">
     <h1 class="display-5 font-weight-bold text-center m-0 mt-1" style="color: #FA9915;">CADASTRO</h1>
     <p class="text-center">Para obter um orçamento, realize seu cadastro:</p>
-    <form class="row g-3 col-12" action="process_form.php" method="post" role="form">
+    <form class="row g-3 col-12" action="process_form.php" method="post" role="form" id="formCadastro">
         <div class="col-12">
             <label for="inputName" class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Ex.: Alexandre Di Primio">
+            <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Ex.: Alexandre Di Primio" required>
         </div>
         <div class="col-md-6 mt-1">
           <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" name="inputEmail4" id="inputEmail4" placeholder="Ex.: exemplo@avd.com.br">
+          <input type="email" class="form-control" name="inputEmail4" id="inputEmail4" placeholder="Ex.: exemplo@avd.com.br" required>
+          <span id="spanEmail" style="color: red;"></span>
         </div>
         <div class="col-md-6 mt-1">
           <label for="inputPassword4" class="form-label">Senha</label>
-          <input type="password" class="form-control" name="inputPassword4" id="inputPassword4" placeholder="************">
+          <input type="password" class="form-control" name="inputPassword4" id="inputPassword4" placeholder="************" required>
+          <span id="spanSenha" style="color: red;"></span>
         </div>
         <div class="col-md-6 mt-1">
           <label for="inputCPF" class="form-label">CPF</label>
-          <input type="text" class="form-control" name="inputCPF" id="inputCPF" placeholder="Ex.: 000.000.000-XX">
+          <input type="text" class="form-control" name="inputCPF" id="inputCPF" placeholder="Ex.: 000.000.000-XX" required>
+          <span id="spanCpf" style="color: red;"></span>
         </div>
         <div class="col-md-6 mt-1">
           <label for="inputCel" class="form-label">Celular</label>
-          <input type="text" class="form-control" name="inputCel" id="inputCel" placeholder="Ex.: (11) 91234-5678">
+          <input type="text" class="form-control" name="inputCel" id="inputCel" placeholder="Ex.: (11) 91234-5678" required>
+          <span id="spanTelefone" style="color: red;"></span>
         </div>
         <div class="col-12 mt-2 mb-1 text-center">
-          <button onClick="cadastrar(event)" type="button" class="btn btn-dark font-weight-bold" style="background-color: #FA9915; border-radius: 50px; border: none;">CADASTRAR</button>
+          <button type="submit" class="btn btn-dark font-weight-bold" style="background-color: #FA9915; border-radius: 50px; border: none;">CADASTRAR</button>
         </div>
       </form>
       <div class="col-12 mb-1 text-center">

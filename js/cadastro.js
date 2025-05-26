@@ -57,8 +57,9 @@ document.getElementById("formCadastro").addEventListener("submit",
 function validarEmail(){
 
     var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var email = formEmail.value.trim();
 
-    if(!emailPattern.test(formEmail)){
+    if(!emailPattern.test(email)){
         erroEmail.textContent = "Por favor, assegure que seu email contém '@'.";
         return false;
     }else{
@@ -69,10 +70,11 @@ function validarEmail(){
 
 function validarTelefone(){
 
-    var telPattern = /^(\d{2})\d{5}-\d{4}$/;
+    var telPattern = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
+    var tel = formTel.value.trim();
 
-    if(!telPattern.test(formTel)){
-        erroTel.textContent = "Por favor, assegure que seu telefone segue o padrão: (99) 99999-9999";
+    if(!telPattern.test(tel)){
+        erroTel.textContent = "Por favor, assegure que seu telefone segue o padrão: (99) 99999-9999 ou (99) 9999-9999";
         return false;
     }else{
         erroTel.textContent = "";
@@ -83,8 +85,9 @@ function validarTelefone(){
 function validarCpf(){
 
     var cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    var cpf = formCpf.value.trim();
 
-    if(!cpfPattern.test(formCpf)){
+    if(!cpfPattern.test(cpf)){
         erroCpf.textContent = "Por favor, assegure que seu CPF segue o padrão: 999.999.999-99";
         return false;
     }else{
@@ -95,9 +98,10 @@ function validarCpf(){
 
 function validarSenha(){
 
-    var senhaPattern = /^(?=.*[@#!$%^&*()_+[({}|\\:;"'<>,.?/~`-]).{8}$/;
+    var senhaPattern = /^(?=.*[@#!$%^&*()_+\-=\[\]{}|\\:;"'<>,.?/~`]).{8,}$/;
+    var senha = formSenha.value;
 
-    if(!senhaPattern.test(formSenha)){
+    if(!senhaPattern.test(senha)){
         erroSenha.textContent = "Por favor, assegure que sua senha contém no mínimo 8 caracteres, com ao menos 1 caracter especial.";
         return false;
     }else{

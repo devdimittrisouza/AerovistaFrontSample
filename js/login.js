@@ -1,10 +1,10 @@
 const API_PREFIX = 'http://localhost:8080';
 
-function login(event){
+function login(event) {
     const dto = {
         loginEmail: document.getElementById("inputEmail4").value,
         loginSenha: document.getElementById("inputPassword4").value
-    }
+    };
 
     event.preventDefault();
 
@@ -15,18 +15,17 @@ function login(event){
         },
         body: JSON.stringify(dto)
     })
-    .then(response => response.text())
-    .then(text => {
-        var retorno = parseInt(text);
-        if (retorno === 1) {
-            window.location.replace('logado.html');
-            return window.alert('Login realizado com sucesso!');
-        }else if(retorno === 0){
-            return window.alert('Email não encontrado!')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Login inválido");
         }
-        else {
-            throw new Error("Falha no login");
-        }
+        return response.json();
     })
-    .catch(error => alert(error.message));
+    .then(data => {
+        localStorage.setItem("jwt", data.jwtToken);
+        window.location.replace("logado.html");
+    })
+    .catch(error => {
+        alert(error.message);
+    });
 }

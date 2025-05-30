@@ -35,6 +35,10 @@
             <li class="nav-item">
               <a class="nav-link" href="/servicos.html">Serviços</a>
             </li>
+            <li>
+              <button id="btnLogout" class="btn btn-dark font-weight-bold"
+              style="background-color: #FA9915; border-radius: 50px; border: none;">Logout</button>
+            </li>
           </ul>
         </div>
       </div>
@@ -46,7 +50,7 @@
       <!-- Solicitar orçamento -->
       <div class="container-fluid">
         <h1 class="display-5 font-weight-bold text-center m-0 mt-1" style="color: #FA9915;">Solicitar orçamento</h1>
-        <form class="g-3 col-12" action="process_orcamento.php" method="post" role="form">
+        <form class="g-3 col-12" action="process_orcamento.php" method="post" role="form" id="formOrcamento">
           <div class="col-md-6 mt-1 container justify-content-center">
             <label for="inputEvento" class="form-label">Tipo de evento:</label>
             <input type="text" class="form-control" name="inputEvento" id="inputEvento"
@@ -60,14 +64,14 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
-                <input type="text" class="form-control" name="DataInicio" id="DataInicio" placeholder="Data de início"
+                <input type="text" class="form-control" name="dataInicio" id="dataInicio" placeholder="Data de início"
                   readonly>
               </div>
               <div class="input-group" style="width: 100%;">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
-                <input type="text" class="form-control" name="DataFim" id="DataFim" placeholder="Data de término"
+                <input type="text" class="form-control" name="dataFim" id="dataFim" placeholder="Data de término"
                   readonly>
               </div>
             </div>

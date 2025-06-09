@@ -12,135 +12,93 @@ erroCpf = document.getElementById("spanCpf");
 formSenha = document.getElementById("inputPassword4");
 erroSenha = document.getElementById("spanSenha");
 
-document.getElementById("formCadastro").addEventListener("submit",
-    function(event){
-        event.preventDefault();
+document.getElementById("formCadastro").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-        var emailOk = validarEmail();
-        var telOk = validarTelefone();
-        var cpfOk = validarCpf();
-        var senhaOk = validarSenha();
+    var emailOk = validarEmail();
+    var telOk = validarTelefone();
+    var cpfOk = validarCpf();
+    var senhaOk = validarSenha();
 
-        if(emailOk && telOk && cpfOk && senhaOk){
-            const dto = {
-                cadNome: document.getElementById("inputName").value,
-                cadEmail: document.getElementById("inputEmail4").value,
-                cadCpf: document.getElementById("inputCPF").value,
-                cadTel: document.getElementById("inputCel").value,
-                cadSenha: document.getElementById("inputPassword4").value
+    if (emailOk && telOk && cpfOk && senhaOk) {
+        const dto = {
+            cadNome: document.getElementById("inputName").value,
+            cadEmail: document.getElementById("inputEmail4").value,
+            cadCpf: document.getElementById("inputCPF").value,
+            cadTel: document.getElementById("inputCel").value,
+            cadSenha: document.getElementById("inputPassword4").value
+        };
+
+        fetch(API_PREFIX + "/api/cadastrar", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dto)
+        })
+        .then(async response => {
+            const message = await response.text();
+            if (response.ok) {
+                alert(message);
+                window.location.replace('/logado.html');
+            } else if (response.status === 409) {
+                alert(message); // Mensagem do tipo "CPF já cadastrado"
+            } else {
+                throw new Error("Erro inesperado no cadastro");
             }
+        })
+        .catch(error => alert(error.message));
+    }
+});
 
-            fetch(API_PREFIX + "/api/cadastrar", {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dto)
-            })
-            .then(response => response.text())
-            .then(text => {
-                var retorno = parseInt(text);
-                if (retorno === 1) {
-                    window.location.replace('/logado.html');
-                    return window.alert("Sucesso ao cadastrar.");
-                }else if (retorno === 0 ){
-                    return window.alert("O CPF informado já está cadastrado");
-                }else {
-                    throw new Error("Falha no cadastro");
-                }
-            })
-            .catch(error => alert(error.message));
-        }
-    }    
-)
-
-function validarEmail(){
-
+function validarEmail() {
     var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     var email = formEmail.value.trim();
 
-    if(!emailPattern.test(email)){
+    if (!emailPattern.test(email)) {
         erroEmail.textContent = "Por favor, assegure que seu email contém '@'.";
         return false;
-    }else{
+    } else {
         erroEmail.textContent = "";
         return true;
     }
 }
 
-function validarTelefone(){
-
+function validarTelefone() {
     var telPattern = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
     var tel = formTel.value.trim();
 
-    if(!telPattern.test(tel)){
+    if (!telPattern.test(tel)) {
         erroTel.textContent = "Por favor, assegure que seu telefone segue o padrão: (99) 99999-9999 ou (99) 9999-9999";
         return false;
-    }else{
+    } else {
         erroTel.textContent = "";
         return true;
     }
 }
 
-function validarCpf(){
-
+function validarCpf() {
     var cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
     var cpf = formCpf.value.trim();
 
-    if(!cpfPattern.test(cpf)){
+    if (!cpfPattern.test(cpf)) {
         erroCpf.textContent = "Por favor, assegure que seu CPF segue o padrão: 999.999.999-99";
         return false;
-    }else{
+    } else {
         erroCpf.textContent = "";
         return true;
     }
 }
 
-function validarSenha(){
-
+function validarSenha() {
     var senhaPattern = /^(?=.*[@#!$%^&*()_+\-=\[\]{}|\\:;"'<>,.?/~`]).{8,}$/;
     var senha = formSenha.value;
 
-    if(!senhaPattern.test(senha)){
+    if (!senhaPattern.test(senha)) {
         erroSenha.textContent = "Por favor, assegure que sua senha contém no mínimo 8 caracteres, com ao menos 1 caracter especial.";
         return false;
-    }else{
+    } else {
         erroSenha.textContent = "";
         return true;
     }
 }
-
-/*
-function cadastrar(event){
-
-    event.preventDefault();
-    const dto = {
-        cadNome: document.getElementById("inputName").value,
-        cadEmail: document.getElementById("inputEmail4").value,
-        cadCpf: document.getElementById("inputCPF").value,
-        cadTel: document.getElementById("inputCel").value,
-        cadSenha: document.getElementById("inputPassword4").value
-    }
-
-    fetch(API_PREFIX + "/api/cadastrar", {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dto)
-    })
-    .then(response => response.text())
-    .then(text => {
-        var retorno = parseInt(text);
-        if (retorno === 1) {
-            window.location.replace('/logado.html');
-            return window.alert("Sucesso ao cadastrar.");
-        }else if (retorno === 0 ){
-            return window.alert("O CPF informado já está cadastrado");
-        }else {
-            throw new Error("Falha no cadastro");
-        }
-    })
-    .catch(error => alert(error.message));
-}
-    */

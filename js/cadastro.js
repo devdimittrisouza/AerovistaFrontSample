@@ -22,7 +22,7 @@ document.getElementById("formCadastro").addEventListener("submit", function(even
 
     if (emailOk && telOk && cpfOk && senhaOk) {
         const dto = {
-            cadNome: document.getElementById("inputName").value,
+             cadNome: sanitizeInput(document.getElementById("inputName").value),
             cadEmail: document.getElementById("inputEmail4").value,
             cadCpf: document.getElementById("inputCPF").value,
             cadTel: document.getElementById("inputCel").value,
@@ -101,4 +101,10 @@ function validarSenha() {
         erroSenha.textContent = "";
         return true;
     }
+}
+
+function sanitizeInput(input) {
+  const div = document.createElement("div");
+  div.innerText = input;
+  return div.innerHTML.trim();
 }
